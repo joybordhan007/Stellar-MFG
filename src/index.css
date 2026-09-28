@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter:Bold";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Inter:Medium";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Inter:Regular";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Inter:Semi Bold";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Saira SemiCondensed:Bold";
+  src: url("https://static.figma.com/font/SairaSemiCondensed-Bold_1")
+    format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Saira SemiCondensed:SemiBold";
+  src: url("https://static.figma.com/font/SairaSemiCondensed-SemiBold_1")
+    format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Saira SemiCondensed:Medium";
+  src: url("https://static.figma.com/font/SairaSemiCondensed-Medium_1")
+    format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Saira:Medium";
+  src: url("https://static.figma.com/font/Saira_wdth_wght__1") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Saira:Regular";
+  src: url("https://static.figma.com/font/Saira_wdth_wght__1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Inria Serif:Bold";
+  src: url("https://static.figma.com/font/InriaSerif-Bold_1") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Noto Sans Math:Regular";
+  src: url("https://static.figma.com/font/NotoSansMath-Regular_1")
+    format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Sans Symbols2:Regular";
+  src: url("https://static.figma.com/font/NotoSansSymbols2-Regular_5")
+    format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Sans Symbols:Medium";
+  src: url("https://static.figma.com/font/NotoSansSymbols-VF_2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Noto Sans:Medium";
+  src: url("https://static.figma.com/font/NotoSans-VF_3") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Iosevka Charon:Medium";
+  src: url("https://static.figma.com/font/IosevkaCharon-Medium_1")
+    format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+
+:root {
+  background: #fafafa;
+  color: #1d1d1d;
+  font-family: "Inter:Regular", Inter, sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+}
+
+button,
+a,
+[data-name="CTA"] {
+  cursor: pointer;
+}
+
+.site-shell {
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.design-stage {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.design-canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1920px;
+  transform-origin: left top;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .mobile-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 12px;
+    background: rgb(29 29 29 / 96%);
+    scrollbar-width: none;
+  }
+
+  .mobile-nav button {
+    flex: none;
+    border: 0;
+    border-radius: 3px;
+    padding: 8px 10px;
+    background: transparent;
+    color: #f6f6f6;
+    font: 500 11px/1.2 "Inter:Medium", Inter, sans-serif;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav button[aria-current="page"] {
+    background: #dea36a;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Stellar Manufacturing",
+  "description": "Stellar Manufacturing creates high-quality apparel through responsible practices, empowered people, and a healthier planet.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
