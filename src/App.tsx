@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react"
 import Home from "./pages/Home"
-import AboutUs from "./pages/Page-1-580"
-import OurCapabilities from "./pages/Page-1-1081"
-import OurFactories from "./pages/Page-1-1416"
-import Sustainability from "./pages/Page-1-1859"
-import Products from "./pages/Page-1-2309"
-import LetsTalk from "./pages/Page-1-2558"
+import AboutUs from "./pages/About-Us"
+import OurCapabilities from "./pages/OurCapabilities"
+import OurFactories from "./pages/OurFactories"
+import Sustainability from "./pages/Sustainability"
+import Products from "./pages/Products"
+import LetsTalk from "./pages/LetsTalk"
 
 type Route = {
   path: string
