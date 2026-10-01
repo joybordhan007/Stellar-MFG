@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import Home from "./pages/Page-1-224"
+import Home from "./pages/Home"
 import AboutUs from "./pages/Page-1-580"
 import OurCapabilities from "./pages/Page-1-1081"
 import OurFactories from "./pages/Page-1-1416"
