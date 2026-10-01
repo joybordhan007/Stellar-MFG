@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const assetPathPrefix = "/assets/1-1416"
 const imgArrowSubdirectoryForward = `${assetPathPrefix}/c4863.svg`
 const imgBlackFabricDrapedElegantFoldsAbstractTextureDesignBackgrounds2 = `${assetPathPrefix}/ec623.png`
@@ -122,6 +124,56 @@ function CertificationMarquee({
             />
           </div>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function ProductMixItem({
+  label,
+  icon,
+  bonding = false,
+}: {
+  label: string
+  icon?: string
+  bonding?: boolean
+}) {
+  return (
+    <div className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]">
+      <div className="overflow-clip relative shrink-0 size-[40px]">
+        {bonding ? (
+          <div className="absolute contents inset-0">
+            <div className="absolute flex inset-[2.93%] items-center justify-center">
+              <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+                <div
+                  className="mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-1.172px_-1.172px] mask-size-[40px_40px] relative size-full"
+                  style={{ maskImage: `url("${imgG127}")` }}
+                >
+                  <div className="absolute inset-[-1.99%]">
+                    <img alt="" className="block max-w-none size-full" src={imgG128} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="absolute flex inset-[31.17%] items-center justify-center">
+              <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+                <div
+                  className="mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-12.469px_-12.469px] mask-size-[40px_40px] relative size-full"
+                  style={{ maskImage: `url("${imgG127}")` }}
+                >
+                  <div className="absolute inset-[-4.98%]">
+                    <img alt="" className="block max-w-none size-full" src={imgG131} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={icon} />
+        )}
+      </div>
+      <div className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]">
+        <p className="leading-[1.2]">{label}</p>
       </div>
     </div>
   )
@@ -524,7 +576,16 @@ function Footer({ className }: { className?: string }) {
   )
 }
 
+type FactoryKey = "good-earth" | "progress" | "knit-gallery"
+
+const factoryMeta: Record<FactoryKey, { name: string; location: string }> = {
+  "good-earth": { name: "Good Earth Apparels", location: "Dhaka, Bangladesh" },
+  progress: { name: "Progress Apparels", location: "Dhaka, Bangladesh" },
+  "knit-gallery": { name: "Knit Gallery", location: "Tirupur, India" },
+}
+
 export default function OurFactories() {
+  const [selectedFactory, setSelectedFactory] = useState<FactoryKey>("good-earth")
   return (
     <div
       className="bg-[#fafafa] relative size-full"
@@ -876,129 +937,51 @@ export default function OurFactories() {
       <div
         className="-translate-x-1/2 absolute content-stretch flex gap-[24px] items-center left-1/2 overflow-clip top-[944px] w-[1560px]"
         data-node-id="1:1468"
-        data-name="Frame"
+        data-name="Factory Selector"
       >
-        <div
-          className="bg-white border-[#dea36a] border-b-3 border-solid content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-center justify-center p-[8px] relative rounded-[8px] shrink-0 w-[504px]"
-          data-node-id="1:1469"
-          data-name="Frame"
-        >
-          <div
-            className="flex-[1_0_0] h-[120px] min-w-px relative rounded-[6px]"
-            data-node-id="1:1470"
-          >
-            <img
-              alt=""
-              className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full"
-              src={imgRectangle9113}
-            />
-          </div>
-          <div
-            className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px p-[16px] relative"
-            data-node-id="1:1471"
-            data-name="Frame"
-          >
-            <div
-              className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic relative shrink-0 w-full"
-              data-node-id="1:1472"
-              data-name="Frame"
+        {([
+          { key: "good-earth", image: imgRectangle9113 },
+          { key: "progress", image: imgRectangle9114 },
+          { key: "knit-gallery", image: imgRectangle9115 },
+        ] as { key: FactoryKey; image: string }[]).map((factory) => {
+          const meta = factoryMeta[factory.key]
+          const isSelected = selectedFactory === factory.key
+
+          return (
+            <button
+              key={factory.key}
+              type="button"
+              onClick={() => setSelectedFactory(factory.key)}
+              aria-pressed={isSelected}
+              className={`bg-white content-stretch flex items-center justify-center p-[8px] relative rounded-[8px] shrink-0 w-[504px] text-left transition-all duration-200 cursor-pointer ${
+                isSelected
+                  ? "border-[#dea36a] border-b-3 drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)]"
+                  : "drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)]"
+              }`}
             >
-              <div
-                className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full"
-                data-node-id="1:1473"
-              >
-                <p className="leading-[1.2]">Good Earth Apparels</p>
+              <div className="flex-[1_0_0] h-[120px] min-w-px relative rounded-[6px] overflow-hidden">
+                <img
+                  alt={meta.name}
+                  className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full"
+                  src={factory.image}
+                />
               </div>
-              <div
-                className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full"
-                data-node-id="1:1474"
-              >
-                <p className="leading-[1.2]">Dhaka, Bangladesh</p>
+              <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px p-[16px] relative">
+                <div className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic relative shrink-0 w-full">
+                  <div className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full">
+                    <p className="leading-[1.2]">{meta.name}</p>
+                  </div>
+                  <div className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full">
+                    <p className="leading-[1.2]">{meta.location}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-center justify-center p-[8px] relative rounded-[8px] shrink-0 w-[504px]"
-          data-node-id="1:1475"
-          data-name="Frame"
-        >
-          <div
-            className="flex-[1_0_0] h-[120px] min-w-px relative rounded-[6px]"
-            data-node-id="1:1476"
-          >
-            <img
-              alt=""
-              className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full"
-              src={imgRectangle9114}
-            />
-          </div>
-          <div
-            className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px p-[16px] relative"
-            data-node-id="1:1477"
-            data-name="Frame"
-          >
-            <div
-              className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic relative shrink-0 w-full"
-              data-node-id="1:1478"
-              data-name="Frame"
-            >
-              <div
-                className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full"
-                data-node-id="1:1479"
-              >
-                <p className="leading-[1.2]">Progress Apparels</p>
-              </div>
-              <div
-                className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full"
-                data-node-id="1:1480"
-              >
-                <p className="leading-[1.2]">Dhaka, Bangladesh</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="bg-white content-stretch drop-shadow-[0px_1px_3px_rgba(0,0,0,0.06)] flex items-center justify-center p-[8px] relative rounded-[8px] shrink-0 w-[504px]"
-          data-node-id="1:1481"
-          data-name="Frame"
-        >
-          <div
-            className="flex-[1_0_0] h-[120px] min-w-px relative rounded-[6px]"
-            data-node-id="1:1482"
-          >
-            <img
-              alt=""
-              className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full"
-              src={imgRectangle9115}
-            />
-          </div>
-          <div
-            className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px p-[16px] relative"
-            data-node-id="1:1483"
-            data-name="Frame"
-          >
-            <div
-              className="[word-break:break-word] content-stretch flex flex-col gap-[4px] items-start leading-[0] not-italic relative shrink-0 w-full"
-              data-node-id="1:1484"
-              data-name="Frame"
-            >
-              <div
-                className="flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center relative shrink-0 text-[#1d1d1d] text-[20px] w-full"
-                data-node-id="1:1485"
-              >
-                <p className="leading-[1.2]">Knit Gallery</p>
-              </div>
-              <div
-                className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] w-full"
-                data-node-id="1:1486"
-              >
-                <p className="leading-[1.2]">Tirupur, India</p>
-              </div>
-            </div>
-          </div>
-        </div>
+            </button>
+          )
+        })}
       </div>
+      {(
+        <>
       <div
         className="-translate-x-1/2 absolute content-stretch flex gap-[24px] items-center justify-center left-1/2 px-[180px] py-[40px] top-[1183px] w-[1920px]"
         data-node-id="1:1487"
@@ -1028,10 +1011,14 @@ export default function OurFactories() {
             data-node-id="1:1491"
           >
             <p className="leading-[1.2]">
-              Good Earth Apparels Ltd. is a LEED Zero–certified green garment
-              factory in Bangladesh. We combine scale, innovation and
-              responsible practices to produce high-quality woven garments for
-              global fashion brands while minimising environmental impact.
+              {selectedFactory === "good-earth" ? (
+                <>Good Earth Apparels Ltd. is a LEED Zero–certified green garment
+                factory in Bangladesh. We combine scale, innovation and
+                responsible practices to produce high-quality woven garments for
+                global fashion brands while minimising environmental impact.</>
+              ) : (
+                <>Factory-specific overview information for {factoryMeta[selectedFactory].name} will be added here. The same facility overview section is ready for this factory.</>
+              )}
             </p>
           </div>
         </div>
@@ -1137,7 +1124,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1510"
                 >
-                  <p className="leading-[1.2]">3,150+</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "3,150+" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1176,7 +1163,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1517"
                 >
-                  <p className="leading-[1.2]">30</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "30" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] uppercase"
@@ -1221,7 +1208,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1530"
                 >
-                  <p className="leading-[1.2]">1,450</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "1,450" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1266,7 +1253,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1539"
                 >
-                  <p className="leading-[1.2]">8.5M+</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "8.5M+" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1311,7 +1298,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1562"
                 >
-                  <p className="leading-[1.2]">60–90</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "60–90" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] uppercase"
@@ -1356,7 +1343,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1574"
                 >
-                  <p className="leading-[1.2]">220,000</p>
+                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "220,000" : "—"}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1423,7 +1410,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1587"
                   >
-                    <p className="leading-[1.2]">44.4%: Womenswear</p>
+                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "44.4%: Womenswear" : "—"}</p>
                   </div>
                 </div>
                 <div
@@ -1445,7 +1432,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1590"
                   >
-                    <p className="leading-[1.2]">44.4%: Menswear</p>
+                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "44.4%: Menswear" : "—"}</p>
                   </div>
                 </div>
                 <div
@@ -1467,7 +1454,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1593"
                   >
-                    <p className="leading-[1.2]">11.1%: Kidswear</p>
+                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "11.1%: Kidswear" : "—"}</p>
                   </div>
                 </div>
               </div>
@@ -1509,7 +1496,7 @@ export default function OurFactories() {
                   data-node-id="1:1599"
                 >
                   <p className="leading-[1.2]">
-                    LEED Zero–certified operations
+                    {selectedFactory === "good-earth" ? "LEED Zero–certified operations" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1533,7 +1520,7 @@ export default function OurFactories() {
                   data-node-id="1:1602"
                 >
                   <p className="leading-[1.2]">
-                    High-quality woven garment production
+                    {selectedFactory === "good-earth" ? "High-quality woven garment production" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1557,7 +1544,7 @@ export default function OurFactories() {
                   data-node-id="1:1605"
                 >
                   <p className="leading-[1.2]">
-                    Integrated, ethical supply chain
+                    {selectedFactory === "good-earth" ? "Integrated, ethical supply chain" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1581,7 +1568,7 @@ export default function OurFactories() {
                   data-node-id="1:1608"
                 >
                   <p className="leading-[1.2]">
-                    Focus on worker welfare and safety
+                    {selectedFactory === "good-earth" ? "Focus on worker welfare and safety" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1605,7 +1592,7 @@ export default function OurFactories() {
                   data-node-id="1:1611"
                 >
                   <p className="leading-[1.2]">
-                    Low-impact, energy-efficient systems
+                    {selectedFactory === "good-earth" ? "Low-impact, energy-efficient systems" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1629,7 +1616,7 @@ export default function OurFactories() {
                   data-node-id="1:1614"
                 >
                   <p className="leading-[1.2]">
-                    Trusted partner to global fashion brands
+                    {selectedFactory === "good-earth" ? "Trusted partner to global fashion brands" : "Factory-specific information available soon"}
                   </p>
                 </div>
               </div>
@@ -1723,7 +1710,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1627"
               >
-                <p className="leading-[1.2]">Front Entrance</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Front Entrance" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1751,7 +1738,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1631"
               >
-                <p className="leading-[1.2]">Aerial View</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Aerial View" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1779,7 +1766,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] whitespace-nowrap"
                 data-node-id="1:1635"
               >
-                <p className="leading-[1.2]">Raw Material Store</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Raw Material Store" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1807,7 +1794,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1639"
               >
-                <p className="leading-[1.2]">Cutting Area</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Cutting Area" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1835,7 +1822,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1643"
               >
-                <p className="leading-[1.2]">Sewing Area</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Sewing Area" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1863,7 +1850,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1647"
               >
-                <p className="leading-[1.2]">Finishing Area</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Finishing Area" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1891,7 +1878,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1651"
               >
-                <p className="leading-[1.2]">Finished Goods Store</p>
+                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Finished Goods Store" : "Factory Gallery"}</p>
               </div>
             </div>
           </div>
@@ -1920,341 +1907,29 @@ export default function OurFactories() {
           >
             <div
               className="content-stretch flex items-center justify-between relative shrink-0 w-full"
-              data-node-id="1:1656"
-              data-name="Frame"
+              data-name="Product Mix - Row 1"
             >
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1657"
-                data-name="Frame"
-              >
-                <div
-                  className="overflow-clip relative shrink-0 size-[40px]"
-                  data-node-id="1:1658"
-                  data-name="Line"
-                >
-                  <div
-                    className="absolute inset-[5.47%]"
-                    data-node-id="1:1659"
-                    data-name="Group"
-                  >
-                    <img
-                      alt=""
-                      className="absolute block inset-0 max-w-none size-full"
-                      src={imgGroup9}
-                    />
-                  </div>
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content] whitespace-pre-wrap"
-                  data-node-id="1:1682"
-                >
-                  <p className="leading-[1.2] mb-0">{`Woven `}</p>
-                  <p className="leading-[1.2]">Garments</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1683"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1684"
-                data-name="Frame"
-              >
-                <div
-                  className="overflow-clip relative shrink-0 size-[40px]"
-                  data-node-id="1:1685"
-                  data-name="Capa_1"
-                >
-                  <div
-                    className="absolute inset-[0_4.38%]"
-                    data-node-id="1:1686"
-                    data-name="Group"
-                  >
-                    <img
-                      alt=""
-                      className="absolute block inset-0 max-w-none size-full"
-                      src={imgGroup10}
-                    />
-                  </div>
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1691"
-                >
-                  <p className="leading-[1.2]">Embroidery</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1692"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1693"
-                data-name="Frame"
-              >
-                <div
-                  className="relative shrink-0 size-[40px]"
-                  data-node-id="1:1694"
-                  data-name="Frame"
-                >
-                  <img
-                    alt=""
-                    className="absolute block inset-0 max-w-none size-full"
-                    src={imgFrame3}
-                  />
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1698"
-                >
-                  <p className="leading-[1.2]">Printing</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1699"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1700"
-                data-name="Frame"
-              >
-                <div
-                  className="overflow-clip relative shrink-0 size-[40px]"
-                  data-node-id="1:1701"
-                  data-name="Capa_1"
-                >
-                  <div
-                    className="absolute inset-[0_2.25%]"
-                    data-node-id="1:1702"
-                    data-name="Group"
-                  >
-                    <img
-                      alt=""
-                      className="absolute block inset-0 max-w-none size-full"
-                      src={imgGroup11}
-                    />
-                  </div>
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1704"
-                >
-                  <p className="leading-[1.2]">Washing</p>
-                </div>
-              </div>
+              <ProductMixItem label="Woven Garments" icon={imgGroup9} />
+              <div className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]" />
+              <ProductMixItem label="Washing" icon={imgGroup11} />
+              <div className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]" />
+              <ProductMixItem label="Product Development" icon={imgLayer2} />
             </div>
             <div
-              className="content-stretch flex items-center justify-between px-[31px] relative shrink-0 w-full"
-              data-node-id="1:1705"
-              data-name="Frame"
+              className="content-stretch flex items-center justify-center px-[31px] relative shrink-0 w-full"
+              data-name="Product Mix - Row Divider"
             >
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[1.5px] relative shrink-0 w-[64px]"
-                data-node-id="1:1706"
-              />
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[1.5px] relative shrink-0 w-[64px]"
-                data-node-id="1:1707"
-              />
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[1.5px] relative shrink-0 w-[64px]"
-                data-node-id="1:1708"
-              />
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[1.5px] relative shrink-0 w-[64px]"
-                data-node-id="1:1709"
-              />
+              <div className="bg-[rgba(0,0,0,0.1)] h-[1.5px] relative shrink-0 w-[180px]" />
             </div>
             <div
               className="content-stretch flex items-center justify-between relative shrink-0 w-full"
-              data-node-id="1:1710"
-              data-name="Frame"
+              data-name="Product Mix - Row 2"
             >
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1711"
-                data-name="Frame"
-              >
-                <div
-                  className="relative shrink-0 size-[40px]"
-                  data-node-id="1:1712"
-                  data-name="Layer_1"
-                >
-                  <img
-                    alt=""
-                    className="absolute block inset-0 max-w-none size-full"
-                    src={imgLayer2}
-                  />
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1714"
-                >
-                  <p className="leading-[1.2]">Product Development</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1715"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1716"
-                data-name="Frame"
-              >
-                <div
-                  className="relative shrink-0 size-[40px]"
-                  data-node-id="1:1717"
-                  data-name="Frame"
-                >
-                  <img
-                    alt=""
-                    className="absolute block inset-0 max-w-none size-full"
-                    src={imgFrame4}
-                  />
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1719"
-                >
-                  <p className="leading-[1.2]">Sustainability</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1720"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1721"
-                data-name="Frame"
-              >
-                <div
-                  className="overflow-clip relative shrink-0 size-[40px]"
-                  data-node-id="1:1722"
-                  data-name="svg111"
-                >
-                  <div
-                    className="absolute contents inset-0"
-                    data-node-id="1:1723"
-                    style={{ containerType: "size" }}
-                    data-name="g117"
-                  >
-                    <div
-                      className="absolute contents inset-0"
-                      data-node-id="1:1724"
-                      style={{ containerType: "size" }}
-                      data-name="g119"
-                    >
-                      <div
-                        className="absolute contents inset-0"
-                        data-node-id="1:1725"
-                        style={{ containerType: "size" }}
-                        data-name="Clip path group"
-                      >
-                        <div
-                          className="absolute contents inset-[2.93%]"
-                          data-node-id="1:1728"
-                          style={{ containerType: "size" }}
-                          data-name="g121"
-                        >
-                          <div
-                            className="absolute flex inset-[2.93%] items-center justify-center"
-                            data-node-id="1:1729"
-                            style={{ containerType: "size" }}
-                          >
-                            <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-                              <div
-                                className="mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-1.172px_-1.172px] mask-size-[40px_40px] relative size-full"
-                                style={{ maskImage: `url("${imgG127}")` }}
-                                data-name="g127"
-                              >
-                                <div className="absolute inset-[-1.99%]">
-                                  <img
-                                    alt=""
-                                    className="block max-w-none size-full"
-                                    src={imgG128}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="absolute flex inset-[31.17%] items-center justify-center"
-                            data-node-id="1:1731"
-                            style={{ containerType: "size" }}
-                          >
-                            <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-                              <div
-                                className="mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-12.469px_-12.469px] mask-size-[40px_40px] relative size-full"
-                                style={{ maskImage: `url("${imgG127}")` }}
-                                data-name="g131"
-                              >
-                                <div className="absolute inset-[-4.98%]">
-                                  <img
-                                    alt=""
-                                    className="block max-w-none size-full"
-                                    src={imgG131}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1733"
-                >
-                  <p className="leading-[1.2]">Bonding</p>
-                </div>
-              </div>
-              <div
-                className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]"
-                data-node-id="1:1734"
-              />
-              <div
-                className="content-stretch flex flex-col gap-[12px] h-[90px] items-center relative shrink-0 w-[115px]"
-                data-node-id="1:1735"
-                data-name="Frame"
-              >
-                <div
-                  className="overflow-clip relative shrink-0 size-[40px]"
-                  data-node-id="1:1736"
-                  data-name="Layer_1"
-                >
-                  <div
-                    className="absolute contents inset-[3.54%_3.21%_3.56%_3.22%]"
-                    data-node-id="1:1737"
-                    data-name="Group"
-                  >
-                    <div
-                      className="absolute inset-[3.54%_3.21%_3.56%_3.22%]"
-                      data-node-id="1:1738"
-                      data-name="Group"
-                    >
-                      <img
-                        alt=""
-                        className="absolute block inset-0 max-w-none size-full"
-                        src={imgGroup12}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center w-[min-content]"
-                  data-node-id="1:1744"
-                >
-                  <p className="leading-[1.2]">Quality Assurance</p>
-                </div>
-              </div>
+              <ProductMixItem label="Sustainability" icon={imgFrame4} />
+              <div className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]" />
+              <ProductMixItem label="Bonding" bonding />
+              <div className="bg-[rgba(0,0,0,0.1)] h-[64px] relative shrink-0 w-[1.5px]" />
+              <ProductMixItem label="Quality Assurance" icon={imgGroup12} />
             </div>
           </div>
         </div>
@@ -2288,7 +1963,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:SemiBold'] justify-center relative shrink-0 text-[20px] w-full"
                   data-node-id="1:1750"
                 >
-                  <p className="leading-[1.2]">Good Earth Apparels Ltd.</p>
+                  <p className="leading-[1.2]">{factoryMeta[selectedFactory].name}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[14px] w-full"
@@ -2329,9 +2004,15 @@ export default function OurFactories() {
                   className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[14px] text-black whitespace-pre-wrap"
                   data-node-id="1:1757"
                 >
-                  <p className="leading-[1.2] mb-0">{`Tepirbari, Telihati, Sreepur, `}</p>
-                  <p className="leading-[1.2] mb-0">{`Gazipur, Bangladesh. `}</p>
-                  <p className="leading-[1.2]">PO: Gazipur-1740.</p>
+                  {selectedFactory === "good-earth" ? (
+                    <>
+                      <p className="leading-[1.2] mb-0">Tepirbari, Telihati, Sreepur,</p>
+                      <p className="leading-[1.2] mb-0">Gazipur, Bangladesh.</p>
+                      <p className="leading-[1.2]">PO: Gazipur-1740.</p>
+                    </>
+                  ) : (
+                    <p className="leading-[1.2]">Factory-specific address will be added here.</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -2670,13 +2351,14 @@ export default function OurFactories() {
                 data-node-id="1:1841"
               >
                 <p className="leading-[1.2]">
-                  Chittagong Port: ~ 260 km (5–6 hours)
+                  {selectedFactory === "good-earth" ? "Chittagong Port: ~ 260 km (5–6 hours)" : "Factory-specific distance information will be added here."}
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+        </>)}
       <div
         className="-translate-x-1/2 absolute content-stretch flex flex-col gap-[56px] items-start left-1/2 px-[180px] top-[2626.5px] w-[1920px]"
         data-node-id="1:1842"
