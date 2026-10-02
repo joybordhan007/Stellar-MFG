@@ -584,6 +584,75 @@ const factoryMeta: Record<FactoryKey, { name: string; location: string }> = {
   "knit-gallery": { name: "Knit Gallery", location: "Tirupur, India" },
 }
 
+
+
+type FactoryData = {
+  name: string
+  location: string
+  address: string
+  overviewTitle: string
+  overviewDescription: string
+  employees: string
+  productionLines: string
+  sewingMachines: string
+  piecesPerYear: string
+  productionRange: string
+  productionCapacity: string
+  productMix: string[]
+  strengths: string[]
+  galleryLabels: string[]
+  distance: string
+}
+
+// Factory-specific content is kept separately so you can edit each factory
+// without changing the layout or another factory's data.
+const factoryData: Record<FactoryKey, FactoryData> = {
+  "good-earth": {
+    name: "Good Earth Apparels",
+    location: "Dhaka, Bangladesh",
+    address: "Tepirbari, Telihati, Sreepur, Gazipur, Bangladesh. PO: Gazipur-1740.",
+    overviewTitle: "Responsible Manufacturing. Real Impact.",
+    overviewDescription: "Good Earth Apparels Ltd. is a LEED Zero–certified green garment factory in Bangladesh. We combine scale, innovation and responsible practices to produce high-quality woven garments for global fashion brands while minimising environmental impact.",
+    employees: "3,150+", productionLines: "30", sewingMachines: "1,450", piecesPerYear: "8.5M+",
+    productionRange: "60–90", productionCapacity: "220,000",
+    productMix: ["44.4%: Womenswear", "44.4%: Menswear", "11.1%: Kidswear"],
+    strengths: [
+      "LEED Zero–certified operations",
+      "High-quality woven garment production",
+      "Integrated, ethical supply chain",
+      "Focus on worker welfare and safety",
+      "Low-impact, energy-efficient systems",
+      "Trusted partner to global fashion brands",
+    ],
+    galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
+    distance: "Chittagong Port: ~ 260 km (5–6 hours)",
+  },
+  progress: {
+    name: "Progress Apparels", location: "Dhaka, Bangladesh",
+    address: "Factory-specific address will be added here.",
+    overviewTitle: "Responsible Manufacturing. Real Impact.",
+    overviewDescription: "Add the Progress Apparels factory overview here. This field is independent from Good Earth Apparels and can be edited without affecting the other factories.",
+    employees: "—", productionLines: "—", sewingMachines: "—", piecesPerYear: "—",
+    productionRange: "—", productionCapacity: "—",
+    productMix: ["—", "—", "—"],
+    strengths: ["—", "—", "—", "—", "—", "—"],
+    galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
+    distance: "Factory-specific distance information will be added here.",
+  },
+  "knit-gallery": {
+    name: "Knit Gallery", location: "Tirupur, India",
+    address: "Factory-specific address will be added here.",
+    overviewTitle: "Responsible Manufacturing. Real Impact.",
+    overviewDescription: "Add the Knit Gallery factory overview here. This field is independent from Good Earth Apparels and Progress Apparels and can be edited separately.",
+    employees: "—", productionLines: "—", sewingMachines: "—", piecesPerYear: "—",
+    productionRange: "—", productionCapacity: "—",
+    productMix: ["—", "—", "—"],
+    strengths: ["—", "—", "—", "—", "—", "—"],
+    galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
+    distance: "Factory-specific distance information will be added here.",
+  },
+}
+
 export default function OurFactories() {
   const [selectedFactory, setSelectedFactory] = useState<FactoryKey>("good-earth")
   return (
@@ -1011,14 +1080,7 @@ export default function OurFactories() {
             data-node-id="1:1491"
           >
             <p className="leading-[1.2]">
-              {selectedFactory === "good-earth" ? (
-                <>Good Earth Apparels Ltd. is a LEED Zero–certified green garment
-                factory in Bangladesh. We combine scale, innovation and
-                responsible practices to produce high-quality woven garments for
-                global fashion brands while minimising environmental impact.</>
-              ) : (
-                <>Factory-specific overview information for {factoryMeta[selectedFactory].name} will be added here. The same facility overview section is ready for this factory.</>
-              )}
+              {factoryData[selectedFactory].overviewDescription}
             </p>
           </div>
         </div>
@@ -1124,7 +1186,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1510"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "3,150+" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].employees}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1163,7 +1225,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1517"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "30" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].productionLines}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] uppercase"
@@ -1208,7 +1270,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1530"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "1,450" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].sewingMachines}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1253,7 +1315,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1539"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "8.5M+" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].piecesPerYear}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1298,7 +1360,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1562"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "60–90" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].productionRange}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] uppercase"
@@ -1343,7 +1405,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Saira_SemiCondensed:Bold'] justify-center relative shrink-0 text-[#1d1d1d] text-[20px]"
                   data-node-id="1:1574"
                 >
-                  <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "220,000" : "—"}</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].productionCapacity}</p>
                 </div>
                 <div
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[#4a4a4a] text-[14px] text-center uppercase"
@@ -1410,7 +1472,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1587"
                   >
-                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "44.4%: Womenswear" : "—"}</p>
+                    <p className="leading-[1.2]">{factoryData[selectedFactory].productMix[0]}</p>
                   </div>
                 </div>
                 <div
@@ -1432,7 +1494,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1590"
                   >
-                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "44.4%: Menswear" : "—"}</p>
+                    <p className="leading-[1.2]">{factoryData[selectedFactory].productMix[1]}</p>
                   </div>
                 </div>
                 <div
@@ -1454,7 +1516,7 @@ export default function OurFactories() {
                     className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#4a4a4a] text-[14px] text-center whitespace-nowrap"
                     data-node-id="1:1593"
                   >
-                    <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "11.1%: Kidswear" : "—"}</p>
+                    <p className="leading-[1.2]">{factoryData[selectedFactory].productMix[2]}</p>
                   </div>
                 </div>
               </div>
@@ -1496,7 +1558,7 @@ export default function OurFactories() {
                   data-node-id="1:1599"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "LEED Zero–certified operations" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[0]}
                   </p>
                 </div>
               </div>
@@ -1520,7 +1582,7 @@ export default function OurFactories() {
                   data-node-id="1:1602"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "High-quality woven garment production" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[1]}
                   </p>
                 </div>
               </div>
@@ -1544,7 +1606,7 @@ export default function OurFactories() {
                   data-node-id="1:1605"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "Integrated, ethical supply chain" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[2]}
                   </p>
                 </div>
               </div>
@@ -1568,7 +1630,7 @@ export default function OurFactories() {
                   data-node-id="1:1608"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "Focus on worker welfare and safety" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[3]}
                   </p>
                 </div>
               </div>
@@ -1592,7 +1654,7 @@ export default function OurFactories() {
                   data-node-id="1:1611"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "Low-impact, energy-efficient systems" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[4]}
                   </p>
                 </div>
               </div>
@@ -1616,7 +1678,7 @@ export default function OurFactories() {
                   data-node-id="1:1614"
                 >
                   <p className="leading-[1.2]">
-                    {selectedFactory === "good-earth" ? "Trusted partner to global fashion brands" : "Factory-specific information available soon"}
+                    {factoryData[selectedFactory].strengths[5]}
                   </p>
                 </div>
               </div>
@@ -1710,7 +1772,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1627"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Front Entrance" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[0]}</p>
               </div>
             </div>
           </div>
@@ -1738,7 +1800,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1631"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Aerial View" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[1]}</p>
               </div>
             </div>
           </div>
@@ -1766,7 +1828,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] whitespace-nowrap"
                 data-node-id="1:1635"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Raw Material Store" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[2]}</p>
               </div>
             </div>
           </div>
@@ -1794,7 +1856,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1639"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Cutting Area" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[3]}</p>
               </div>
             </div>
           </div>
@@ -1822,7 +1884,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1643"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Sewing Area" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[4]}</p>
               </div>
             </div>
           </div>
@@ -1850,7 +1912,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1647"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Finishing Area" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[5]}</p>
               </div>
             </div>
           </div>
@@ -1878,7 +1940,7 @@ export default function OurFactories() {
                 className="[word-break:break-word] flex flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#1d1d1d] text-[14px] w-full"
                 data-node-id="1:1651"
               >
-                <p className="leading-[1.2]">{selectedFactory === "good-earth" ? "Finished Goods Store" : "Factory Gallery"}</p>
+                <p className="leading-[1.2]">{factoryData[selectedFactory].galleryLabels[6]}</p>
               </div>
             </div>
           </div>
@@ -1955,7 +2017,7 @@ export default function OurFactories() {
               data-name="Frame"
             >
               <div
-                className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[0] not-italic relative shrink-0 text-[#1d1d1d] w-[205px]"
+                className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[1.2] min-w-0 not-italic relative shrink-0 text-[#1d1d1d] w-[205px]"
                 data-node-id="1:1749"
                 data-name="Frame"
               >
@@ -1969,7 +2031,7 @@ export default function OurFactories() {
                   className="flex flex-col font-['Inter:Medium'] font-medium justify-center relative shrink-0 text-[14px] w-full"
                   data-node-id="1:1751"
                 >
-                  <p className="leading-[1.2]">Dhaka, Bangladesh</p>
+                  <p className="leading-[1.2]">{factoryData[selectedFactory].location}</p>
                 </div>
               </div>
               <div
@@ -2001,18 +2063,10 @@ export default function OurFactories() {
                   </div>
                 </div>
                 <div
-                  className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-center leading-[0] min-w-px not-italic relative text-[14px] text-black whitespace-pre-wrap"
+                  className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Medium'] font-medium justify-start leading-[1.4] min-w-0 not-italic relative text-[14px] text-black whitespace-normal break-words"
                   data-node-id="1:1757"
                 >
-                  {selectedFactory === "good-earth" ? (
-                    <>
-                      <p className="leading-[1.2] mb-0">Tepirbari, Telihati, Sreepur,</p>
-                      <p className="leading-[1.2] mb-0">Gazipur, Bangladesh.</p>
-                      <p className="leading-[1.2]">PO: Gazipur-1740.</p>
-                    </>
-                  ) : (
-                    <p className="leading-[1.2]">Factory-specific address will be added here.</p>
-                  )}
+                  {factoryData[selectedFactory].address}
                 </div>
               </div>
             </div>
@@ -2351,7 +2405,7 @@ export default function OurFactories() {
                 data-node-id="1:1841"
               >
                 <p className="leading-[1.2]">
-                  {selectedFactory === "good-earth" ? "Chittagong Port: ~ 260 km (5–6 hours)" : "Factory-specific distance information will be added here."}
+                  {factoryData[selectedFactory].distance}
                 </p>
               </div>
             </div>
