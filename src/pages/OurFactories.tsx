@@ -615,7 +615,11 @@ const factoryData: Record<FactoryKey, FactoryData> = {
     overviewDescription: "Good Earth Apparels Ltd. is a LEED Zero–certified green garment factory in Bangladesh. We combine scale, innovation and responsible practices to produce high-quality woven garments for global fashion brands while minimising environmental impact.",
     employees: "3,150+", productionLines: "30", sewingMachines: "1,450", piecesPerYear: "8.5M+",
     productionRange: "60–90", productionCapacity: "220,000",
-    productMix: ["44.4%: Womenswear", "44.4%: Menswear", "11.1%: Kidswear"],
+    productMix: [
+      "44.4%: Womenswear", 
+      "44.4%: Menswear", 
+      "11.1%: Kidswear"
+    ],
     strengths: [
       "LEED Zero–certified operations",
       "High-quality woven garment production",
@@ -629,15 +633,26 @@ const factoryData: Record<FactoryKey, FactoryData> = {
   },
   progress: {
     name: "Progress Apparels", location: "Dhaka, Bangladesh",
-    address: "Factory-specific address will be added here.",
+    address: "Tepirbari, Telihati, Sreepur, Gazipur, Bangladesh. PO: Gazipur-1740.",
     overviewTitle: "Responsible Manufacturing. Real Impact.",
-    overviewDescription: "Add the Progress Apparels factory overview here. This field is independent from Good Earth Apparels and can be edited without affecting the other factories.",
-    employees: "—", productionLines: "—", sewingMachines: "—", piecesPerYear: "—",
-    productionRange: "—", productionCapacity: "—",
-    productMix: ["—", "—", "—"],
-    strengths: ["—", "—", "—", "—", "—", "—"],
+    overviewDescription: "Progress Apparels is a apparel manufacturer delivering design-to-delivery solutions with strong capabilities across product development, manufacturing, and global sourcing, known for speed, scale, and quality execution..",
+    employees: "3,550+", productionLines: "45", sewingMachines: "1,850", piecesPerYear: "9.6M",
+    productionRange: "60-90", productionCapacity: "217,800",
+    productMix: [
+      "30%: Womenswear", 
+      "50%: Menswear", 
+      "20%: Kidswear"
+    ],
+    strengths: [
+      "End-to-End Apparel Manufacturing", 
+      "Advanced Garment Washing & Finishing", 
+      "Expertise in Cotton, Denim & Stretch", 
+      "Sustainable, Scalable Production", 
+      "—", 
+      "—"
+    ],
     galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
-    distance: "Factory-specific distance information will be added here.",
+    distance: "Chittagong Port: ~ 260 km (5–6 hours)",
   },
   "knit-gallery": {
     name: "Knit Gallery", location: "Tirupur, India",
