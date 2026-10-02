@@ -101,10 +101,12 @@ const certificationsandstandardsLogos = [
 ]
 function CertificationMarquee({
   direction = "left",
+  logos: certificationLogos = certificationsandstandardsLogos,
 }: {
   direction?: "left" | "right"
+  logos?: string[]
 }) {
-  const logos = [...certificationsandstandardsLogos, ...certificationsandstandardsLogos]
+  const logos = [...certificationLogos, ...certificationLogos]
 
   return (
     <div className="certification-marquee">
@@ -601,8 +603,63 @@ type FactoryData = {
   productMix: string[]
   strengths: string[]
   galleryLabels: string[]
+  insideFactoryImages: string[]
+  certificationLogos: string[]
   distance: string
 }
+
+// Each factory has its own image lists.
+// Replace only the paths inside a factory block when you want different images.
+const goodEarthInsideFactoryImages = [
+  imgRectangle9116,
+  imgRectangle9113,
+  imgRectangle9117,
+  imgRectangle9118,
+  imgRectangle9119,
+  imgRectangle9120,
+  imgRectangle9121,
+]
+
+const progressInsideFactoryImages = [
+  imgRectangle9116,
+  imgRectangle9113,
+  imgRectangle9117,
+  imgRectangle9118,
+  imgRectangle9119,
+  imgRectangle9120,
+  imgRectangle9121,
+]
+
+const knitGalleryInsideFactoryImages = [
+  imgRectangle9116,
+  imgRectangle9113,
+  imgRectangle9117,
+  imgRectangle9118,
+  imgRectangle9119,
+  imgRectangle9120,
+  imgRectangle9121,
+]
+
+const goodEarthCertificationLogos = [...certificationsandstandardsLogos]
+const progressCertificationLogos = [
+  "/assets/pabl-certifications/accord.png",
+  "/assets/pabl-certifications/amfori.png",
+  "/assets/pabl-certifications/bci.png",
+  "/assets/pabl-certifications/bsci.png",
+  "/assets/pabl-certifications/european.png",
+  "/assets/pabl-certifications/global.png",
+  "/assets/pabl-certifications/gots.png",
+  "/assets/pabl-certifications/higg.png",
+  "/assets/pabl-certifications/labor.png",
+  "/assets/pabl-certifications/oekotex.png",
+  "/assets/pabl-certifications/organic100.png",
+  "/assets/pabl-certifications/recycled.png",
+  "/assets/pabl-certifications/sedex.png",
+  "/assets/pabl-certifications/sustainable.png",
+  "/assets/pabl-certifications/usgbc.png",
+  "/assets/pabl-certifications/wrap.png",
+  ...certificationsandstandardsLogos]
+const knitGalleryCertificationLogos = [...certificationsandstandardsLogos]
 
 // Factory-specific content is kept separately so you can edit each factory
 // without changing the layout or another factory's data.
@@ -615,11 +672,7 @@ const factoryData: Record<FactoryKey, FactoryData> = {
     overviewDescription: "Good Earth Apparels Ltd. is a LEED Zero–certified green garment factory in Bangladesh. We combine scale, innovation and responsible practices to produce high-quality woven garments for global fashion brands while minimising environmental impact.",
     employees: "3,150+", productionLines: "30", sewingMachines: "1,450", piecesPerYear: "8.5M+",
     productionRange: "60–90", productionCapacity: "220,000",
-    productMix: [
-      "44.4%: Womenswear", 
-      "44.4%: Menswear", 
-      "11.1%: Kidswear"
-    ],
+    productMix: ["44.4%: Womenswear", "44.4%: Menswear", "11.1%: Kidswear"],
     strengths: [
       "LEED Zero–certified operations",
       "High-quality woven garment production",
@@ -629,30 +682,23 @@ const factoryData: Record<FactoryKey, FactoryData> = {
       "Trusted partner to global fashion brands",
     ],
     galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
+    insideFactoryImages: goodEarthInsideFactoryImages,
+    certificationLogos: goodEarthCertificationLogos,
     distance: "Chittagong Port: ~ 260 km (5–6 hours)",
   },
   progress: {
     name: "Progress Apparels", location: "Dhaka, Bangladesh",
-    address: "Tepirbari, Telihati, Sreepur, Gazipur, Bangladesh. PO: Gazipur-1740.",
+    address: "Factory-specific address will be added here.",
     overviewTitle: "Responsible Manufacturing. Real Impact.",
-    overviewDescription: "Progress Apparels is a apparel manufacturer delivering design-to-delivery solutions with strong capabilities across product development, manufacturing, and global sourcing, known for speed, scale, and quality execution..",
-    employees: "3,550+", productionLines: "45", sewingMachines: "1,850", piecesPerYear: "9.6M",
-    productionRange: "60-90", productionCapacity: "217,800",
-    productMix: [
-      "30%: Womenswear", 
-      "50%: Menswear", 
-      "20%: Kidswear"
-    ],
-    strengths: [
-      "End-to-End Apparel Manufacturing", 
-      "Advanced Garment Washing & Finishing", 
-      "Expertise in Cotton, Denim & Stretch", 
-      "Sustainable, Scalable Production", 
-      "—", 
-      "—"
-    ],
+    overviewDescription: "Add the Progress Apparels factory overview here. This field is independent from Good Earth Apparels and can be edited without affecting the other factories.",
+    employees: "—", productionLines: "—", sewingMachines: "—", piecesPerYear: "—",
+    productionRange: "—", productionCapacity: "—",
+    productMix: ["—", "—", "—"],
+    strengths: ["—", "—", "—", "—", "—", "—"],
     galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
-    distance: "Chittagong Port: ~ 260 km (5–6 hours)",
+    insideFactoryImages: progressInsideFactoryImages,
+    certificationLogos: progressCertificationLogos,
+    distance: "Factory-specific distance information will be added here.",
   },
   "knit-gallery": {
     name: "Knit Gallery", location: "Tirupur, India",
@@ -664,6 +710,8 @@ const factoryData: Record<FactoryKey, FactoryData> = {
     productMix: ["—", "—", "—"],
     strengths: ["—", "—", "—", "—", "—", "—"],
     galleryLabels: ["Front Entrance", "Aerial View", "Raw Material Store", "Cutting Area", "Sewing Area", "Finishing Area", "Finished Goods Store"],
+    insideFactoryImages: knitGalleryInsideFactoryImages,
+    certificationLogos: knitGalleryCertificationLogos,
     distance: "Factory-specific distance information will be added here.",
   },
 }
@@ -1775,7 +1823,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9116}
+                src={factoryData[selectedFactory].insideFactoryImages[0]}
               />
             </div>
             <div
@@ -1803,7 +1851,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9113}
+                src={factoryData[selectedFactory].insideFactoryImages[1]}
               />
             </div>
             <div
@@ -1831,7 +1879,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9117}
+                src={factoryData[selectedFactory].insideFactoryImages[2]}
               />
             </div>
             <div
@@ -1859,7 +1907,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9118}
+                src={factoryData[selectedFactory].insideFactoryImages[3]}
               />
             </div>
             <div
@@ -1887,7 +1935,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9119}
+                src={factoryData[selectedFactory].insideFactoryImages[4]}
               />
             </div>
             <div
@@ -1915,7 +1963,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9120}
+                src={factoryData[selectedFactory].insideFactoryImages[5]}
               />
             </div>
             <div
@@ -1943,7 +1991,7 @@ export default function OurFactories() {
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full"
-                src={imgRectangle9121}
+                src={factoryData[selectedFactory].insideFactoryImages[6]}
               />
             </div>
             <div
@@ -2444,8 +2492,14 @@ export default function OurFactories() {
           data-node-id="1:1844"
           data-name="Frame"
         >
-          <CertificationMarquee direction="left" />
-          <CertificationMarquee direction="right" />
+          <CertificationMarquee
+            direction="left"
+            logos={factoryData[selectedFactory].certificationLogos}
+          />
+          <CertificationMarquee
+            direction="right"
+            logos={factoryData[selectedFactory].certificationLogos}
+          />
         </div>
       </div>
     </div>
